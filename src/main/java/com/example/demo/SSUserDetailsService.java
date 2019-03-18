@@ -30,10 +30,11 @@ public class SSUserDetailsService implements UserDetailsService {
                 return null;
             }
             System.out.println("User from username " + appUser.toString());
-            return new org.springframework.security.core.userdetails.User(
-                    appUser.getUsername(),
-                    appUser.getPassword(),
-                    getAuthorities(appUser));
+            return new CustomerUserDetails(appUser, getAuthorities(appUser));
+//            return new org.springframework.security.core.userdetails.User(
+//                    appUser.getUsername(),
+//                    appUser.getPassword(),
+//                    getAuthorities(appUser));
 
         } catch (Exception e){
             throw new UsernameNotFoundException("User not found");
